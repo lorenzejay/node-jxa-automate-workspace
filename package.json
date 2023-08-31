@@ -1,10 +1,13 @@
 {
   "name": "node-jxa-workspace-automation",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Packaging node + jxa scripts to use for automating macos based workspaces",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "exports": "./dist/main.js",
+  "files": [
+    "dist"
+  ],
   "publisher": "lorenzejay",
   "homepage": "https://github.com/lorenzejay/node-jxa-automate-workspace",
   "scripts": {
