@@ -14,10 +14,3 @@ export {
   closeApp,
 }
 
-// for npm
-exports.openApp
-exports.openArcContext
-exports.openDocker
-exports.openArcContext
-exports.getUserSelection
-exports.closeApp
