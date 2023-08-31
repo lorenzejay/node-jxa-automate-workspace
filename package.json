@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Packaging node + jxa scripts to use for automating macos based workspaces",
   "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "publisher": "lorenzejay",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
