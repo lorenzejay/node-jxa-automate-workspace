@@ -5,10 +5,6 @@
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "exports": "./dist/main.js",
-  "files": [
-    "./dist/main.js",
-    "./dist/main.d.ts"
-  ],
   "publisher": "lorenzejay",
   "homepage": "https://github.com/lorenzejay/node-jxa-automate-workspace",
   "scripts": {
