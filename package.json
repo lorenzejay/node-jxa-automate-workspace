@@ -1,0 +1,26 @@
+{
+  "name": "jxa-workspace-automation",
+  "version": "1.0.0",
+  "description": "Packaging node + jxa scripts to use for automating macos based workspaces",
+  "main": "./dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "automation",
+    "node",
+    "applescript"
+  ],
+  "author": "Lorenze Jay Hernandez",
+  "license": "ISC",
+  "dependencies": {
+    "@jxa/global-type": "^1.3.6",
+    "@jxa/run": "^1.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
