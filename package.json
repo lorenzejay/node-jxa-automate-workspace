@@ -1,5 +1,5 @@
 {
-  "name": "jxa-workspace-automation",
+  "name": "node-jxa-workspace-automation",
   "version": "1.0.0",
   "description": "Packaging node + jxa scripts to use for automating macos based workspaces",
   "main": "./dist/main.js",
