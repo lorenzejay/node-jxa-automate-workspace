@@ -2,6 +2,10 @@
 
 Automating workspaces with node.js + applescript
 
+```sh
+ npm i node-jxa-workspace-automation
+```
+
 ## Tech
 
 1. JXA
@@ -16,12 +20,15 @@ Automating workspaces with node.js + applescript
 Here is an example use:
 
 ```js
-import { contextSelections } from './context-examples.js'
-import { openTerminalInFilepath } from '../lib/scripts/openTerminalContext.js'
-import { openApp } from '../lib/scripts/openApp.js'
-import { openArcContext } from '../lib/scripts/openArcContext.js'
-import { openDocker } from '../lib/scripts/openDocker.js'
-import { getUserSelection } from '../lib/scripts/getUserSelection.js'
+import '@jxa/global-type'
+import { contextSelections } from './defaultContexts/context.js'
+import {
+  getUserSelection,
+  openApp,
+  openArcContext,
+  openDocker,
+  openTerminalInFilepath,
+} from 'node-jxa-workspace-automation'
 
 const automateWorkspace = async () => {
   try {
@@ -29,7 +36,7 @@ const automateWorkspace = async () => {
     if (!selectedWorkspace) return 'no selected apps'
     for (let app of selectedWorkspace.applications) {
       if (app == 'Docker') {
-        await openDocker('Docker')
+        await openDocker()
       } else if (app == 'Terminal') {
         await openTerminalInFilepath({
           filePaths: selectedWorkspace.workspacePaths,
@@ -59,8 +66,6 @@ Features
 2. Opens apps associated to workspace
 3. Open project in code editor
 4. Populate common workspace browser tabs to browser
-
-- not needed for ARC
 
 ## Resources:
 
