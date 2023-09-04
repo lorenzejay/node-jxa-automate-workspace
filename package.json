@@ -1,6 +1,6 @@
 {
   "name": "node-jxa-workspace-automation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Packaging node + jxa scripts to use for automating macos based workspaces",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
@@ -13,6 +13,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lorenzejay/node-jxa-automate-workspace.git"
   },
   "keywords": [
     "automation",
