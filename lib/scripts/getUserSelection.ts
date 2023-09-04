@@ -11,7 +11,6 @@ export async function getUserSelection(appContexts: WorkspaceContext[]): Promise
       withPrompt: 'Select workspace:',
       defaultItems: options[0],
     })
-    console.log('typeof', typeof chosenButton)
     chosenButton[0] ? chosenButton[0] : null
     // @ts-ignore
     return appContexts.find((context) => context.title == chosenButton)

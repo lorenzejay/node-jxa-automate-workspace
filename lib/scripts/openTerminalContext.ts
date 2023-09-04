@@ -8,12 +8,7 @@ export const openTerminalInFilepath = async (context: TerminalContext) => {
     const terminal = Application('Terminal')
     terminal.includeStandardAdditions = true
 
-    if (terminal.running()) {
-      terminal.activate()
-    } else {
-      terminal.launch()
-      terminal.activate()
-    }
+    delay(0.5)
 
     // create the terminal windows so we can specify which window to run the command in
     for (let i = 0; i < filePaths.length; i++) {
@@ -23,8 +18,6 @@ export const openTerminalInFilepath = async (context: TerminalContext) => {
 
     for (let i = 0; i < filePaths.length; i++) {
       const window = terminal.windows[i]
-      // console.log('opening:', filePaths[i])
-
       terminal.doScript(`cd "/${filePaths[i]}"`, {
         in: window,
       })
