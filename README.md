@@ -1,4 +1,4 @@
-## Workspace Automation Scipts
+## Workspace Automation Scripts
 
 Automating workspaces with node.js + applescript
 
