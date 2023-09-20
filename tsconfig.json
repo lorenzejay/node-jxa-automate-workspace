@@ -10,5 +10,5 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true
   },
-  "include": ["./lib/", "./local-test/testApps.ts"]
+  "include": ["./lib"]
 }
