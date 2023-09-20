@@ -1,6 +1,6 @@
 import '@jxa/global-type'
 import { run } from '@jxa/run'
-import { ArcContextTypes } from '../types/types'
+import { ArcContextTypes } from '../../types/types'
 
 export const openArcContext = async (context: ArcContextTypes) => {
   return await run((context: ArcContextTypes) => {
