@@ -41,6 +41,5 @@ export const openSafariContext = async (context:ContextProps) => {
   }, context)
 }
 
-// usage example - 
-openSafariContext({ tabs: ['https://github.com', 'https://www.npmjs.com/package/node-jxa-workspace-automation']})
+// usage example - openSafariContext({ tabs: ['https://github.com', 'https://www.npmjs.com/package/node-jxa-workspace-automation']})
 
