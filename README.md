@@ -32,17 +32,10 @@ Automating workspaces with node.js + applescript (jxa)
 ```js
 import { openChromiumBrowser } from 'node-jxa-workspace-automation'
 
-const openMarketingInMyBrowsers = async () => {
-  try {
-    await openChromiumBrowser({
-      tabs: ['https://hubspot.com', 'https://semrush.com'],
-      browser: 'Google Chrome',
-    })
-  } catch (error) {
-    throw new Error(error?.message || 'Something went wrong')
-  }
-}
-openMarketingInMyBrowsers()
+openChromiumBrowser({
+  tabs: ['https://hubspot.com', 'https://semrush.com'],
+  browser: 'Google Chrome',
+})
 ```
 
 ## Run your automation
