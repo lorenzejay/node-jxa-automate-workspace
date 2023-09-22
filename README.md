@@ -13,7 +13,7 @@ Automating workspaces with node.js + applescript (jxa)
 2. Mac Script Editor
 3. Shortcuts
 
-# Create a node.js script - open a folder and
+# Step 1. Open your code editor at a new project. We will create a node.js script
 
 ```sh
   npm i -y
@@ -33,104 +33,10 @@ Automating workspaces with node.js + applescript (jxa)
   touch context.js
 ```
 
-Follow this structure
-
-```ts
-const contextName = {
-  title: 'Context Name',
-  description: 'Full Stack App',
-  applications: [
-    'Arc',
-    'Terminal',
-    'Insomnia',
-    'DBeaver',
-    'Docker',
-    'Postgres',
-  ],
-  workspacePaths: [
-    '<Enter file path to open in VSCODE>',
-    '<Enter a second file path to open in VSCODE>',
-  ],
-  browserLinks: ['https://github.com'],
-  workspaceCommands: ['npm run dev'],
-  spaceName: '<your name>',
-  spaceId: 'space name', // if you're using Arc
-  usesDocker: true,
-}
-
-const context2 = {
-  title: 'Company 2',
-  description: 'next.js app',
-  workspacePaths: ['<workspace path>'],
-  workspaceCommands: ['npm run dev'],
-  applications: ['Google Chrome', 'Terminal'],
-  spaceName: '<space2>',
-  browserLinks: [
-    'https://runme.dev',
-    'https://stateful.com',
-    'http://localhost:3001',
-  ],
-  usesDocker: false,
-}
-
-const contextSelections = [contextName, context2Name]
-
-export { contextSelections }
-```
-
-Here is an example use:
+## Now in index.js copy and paste this example
 
 ```js
-import { contextSelections } from './context.js'
-import {
-  getUserSelection,
-  openApp,
-  openArcContext,
-  openDocker,
-  openTerminalInFilepath,
-} from 'node-jxa-workspace-automation'
-
-const openSelectedWorkspace = async () => {
-  try {
-    const selectedWorkspace = await getUserSelection(contextSelections)
-    if (!selectedWorkspace) return 'no selected apps'
-    for (let app of selectedWorkspace.applications) {
-      if (app == 'Docker') {
-        await openDocker()
-      } else if (app == 'Terminal') {
-        await openTerminalInFilepath({
-          filePaths: selectedWorkspace.workspacePaths,
-          commands: selectedWorkspace.workspaceCommands,
-          usesDocker: selectedWorkspace.usesDocker,
-        })
-      } else if (app == 'Arc') {
-        await openArcContext({
-          links: selectedWorkspace.browserLinks,
-          spaceName: selectedWorkspace.spaceName,
-        })
-      } else {
-        await openApp(app)
-      }
-    }
-  } catch (error) {
-    throw new Error(error?.message || 'Something went wrong')
-  }
-}
-
-openSelectedWorkspace()
-```
-
-### Another
-
-```js
-import {
-  getUserSelection,
-  openApp,
-  openArcContext,
-  openDocker,
-  openTerminalInFilepath,
-  open,
-} from 'node-jxa-workspace-automation'
+import { openChromiumBrowser } from 'node-jxa-workspace-automation'
 
 const openMarketingInMyBrowsers = async () => {
   try {
@@ -142,7 +48,7 @@ const openMarketingInMyBrowsers = async () => {
     throw new Error(error?.message || 'Something went wrong')
   }
 }
-openSelectedWorkspace()
+openMarketingInMyBrowsers()
 ```
 
 ## Run your automation
