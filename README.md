@@ -19,6 +19,8 @@ Automating workspaces with node.js + applescript (jxa)
   npm i -y
 ```
 
+In your package.json file include `"type": "module"` to use import syntax
+
 ```sh
   touch index.js
 ```
