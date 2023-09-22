@@ -27,12 +27,6 @@ Automating workspaces with node.js + applescript (jxa)
  npm i node-jxa-workspace-automation
 ```
 
-## Add context to your automation
-
-```sh
-  touch context.js
-```
-
 ## Now in index.js copy and paste this example
 
 ```js
