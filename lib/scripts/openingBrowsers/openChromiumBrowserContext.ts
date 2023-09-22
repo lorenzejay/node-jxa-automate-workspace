@@ -10,10 +10,10 @@ interface ContextProps {
 // currently supports [Brave Browser, browser] 
 export const openChromiumBrowser = async (context:ContextProps) => {
   return await run((context: ContextProps) => {
-    const { tabs } = context 
+    const { tabs, browser: browserSelected } = context 
     
     try {
-      const browser = Application('Brave Browser')
+      const browser = Application(browserSelected)
       browser.includeStandardAdditions = true
 
       if (!browser.running()) {
