@@ -87,7 +87,7 @@ const contextName = {
   usesDocker: true,
 }
 
-const context2 = {
+const context2Name = {
   title: 'Company 2',
   description: 'next.js app',
   workspacePaths: ['<workspace path>'],
