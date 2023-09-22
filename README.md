@@ -53,6 +53,92 @@ openMarketingInMyBrowsers()
  node index.js
 ```
 
+### If you want to to open a dev environment locally on VS Code
+
+```ts
+import {
+  openTerminalInFilepath,
+  getUserSelection,
+  openApp,
+  openArcContext,
+  openDocker,
+  openChromiumBrowser,
+} from 'node-jxa-workspace-automation'
+
+const contextName = {
+  title: 'Context Name',
+  description: 'Full Stack App',
+  applications: [
+    'Arc',
+    'Terminal',
+    'Insomnia',
+    'DBeaver',
+    'Docker',
+    'Postgres',
+  ],
+  workspacePaths: [
+    '<Enter file path to open in VSCODE>',
+    '<Enter a second file path to open in VSCODE>',
+  ],
+  browserLinks: ['https://github.com'],
+  workspaceCommands: ['npm run dev'],
+  spaceName: '<your name>',
+  spaceId: 'space name', // if you're using Arc
+  usesDocker: true,
+}
+
+const context2 = {
+  title: 'Company 2',
+  description: 'next.js app',
+  workspacePaths: ['<workspace path>'],
+  workspaceCommands: ['npm run dev'],
+  applications: ['Google Chrome', 'Terminal'],
+  spaceName: '<space2>',
+  browserLinks: [
+    'https://runme.dev',
+    'https://stateful.com',
+    'http://localhost:3001',
+  ],
+  usesDocker: false,
+}
+
+const contextSelections = [contextName, context2Name]
+
+const automateWorkspace = async () => {
+  try {
+    const selectedWorkspace = await getUserSelection(contextSelections)
+    if (!selectedWorkspace) return 'no selected apps'
+    for (let app of selectedWorkspace.applications) {
+      if (app == 'Docker') {
+        await openDocker()
+      } else if (app == 'Terminal') {
+        await openTerminalInFilepath({
+          filePaths: selectedWorkspace.workspacePaths,
+          commands: selectedWorkspace.workspaceCommands,
+          usesDocker: selectedWorkspace.usesDocker,
+        })
+      } else if (app == 'Google Chrome') {
+        await openChromiumBrowser({
+          tabs: selectedWorkspace.browserLinks,
+          browser: app,
+        })
+      } else if (app == 'Arc') {
+        await openArcContext({
+          links: selectedWorkspace.browserLinks,
+          spaceName: selectedWorkspace.spaceName,
+        })
+      } else {
+        await openApp(app)
+      }
+    }
+  } catch (error) {
+    throw new Error('Something went wrong')
+  }
+}
+
+automateWorkspace()
+```
+
 Features
 
 1. Open / Close Apps
