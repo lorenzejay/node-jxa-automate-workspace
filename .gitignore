@@ -6,3 +6,5 @@ local-test/*
 dist
 *.tgz
 package/
+
+.env
