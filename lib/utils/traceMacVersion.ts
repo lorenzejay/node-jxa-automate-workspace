@@ -15,13 +15,6 @@ async function logSystemInfo() {
     const osType = os.type();
     const osPlatform = os.platform();
     const osRelease = os.release();
-  console.log({
-    'OS Type': osType,
-    'OS Platform': osPlatform,
-    'OS Release': osRelease,
-
-})
-
     try {
       await base('Table 1').create([
         {
@@ -29,7 +22,7 @@ async function logSystemInfo() {
                 'OS Type': osType,
                 'OS Platform': osPlatform,
                 'OS Release': osRelease,
-
+                'Timestamp': new Date().toISOString()
             }
         }
     ])
