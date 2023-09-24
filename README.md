@@ -154,7 +154,3 @@ Notes:
 Depending if you've installed node directly or with nvm you need to point to it.
 
 [applescript docs](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_error_codes.html#//apple_ref/doc/uid/TP40000983-CH220-SW5)
-
-## Privacy Policy
-
-Currently logging OS_Type, OS_Platform, and OS_Release to better understand bugs that occur depending on mac versions. No other info is tracked. Visit `utils/traceMacVersion.ts` to see code.
