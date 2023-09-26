@@ -154,3 +154,20 @@ Notes:
 Depending if you've installed node directly or with nvm you need to point to it.
 
 [applescript docs](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_error_codes.html#//apple_ref/doc/uid/TP40000983-CH220-SW5)
+
+## License
+
+This project is available under the [Fair Source License](https://fair.io/?a#license) and can be used for free for individual use.
+
+### For Individual Users
+
+- Individual users are permitted to use the software for free.
+- Review the [LICENSE](./LICENSE) file for detailed information on the permissions and limitations.
+
+### For Commercial Use
+
+- Businesses and other commercial entities are required to purchase a commercial license for use.
+- The use of this software without a commercial license in a commercial setting is not permitted under the Fair Source License.
+- For information on commercial licensing, please contact us at [contact@example.com](mailto:lorenze@upliftdigitalsolutions.com).
+
+**Please review the [LICENSE](./license) file in this repository for full details on permissions and restrictions.**
