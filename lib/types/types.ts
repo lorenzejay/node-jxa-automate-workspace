@@ -48,8 +48,8 @@ export interface ITerminalTabs {
 export interface ItermContext {
   filePath: string;
   command: string;
-  usesDocker: boolean
-  opensVSCode: boolean
+  usesDocker?: boolean
+  opensVSCode?: boolean
 }
 
 export interface ItermWindowSplit {
