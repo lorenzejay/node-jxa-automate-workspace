@@ -4,7 +4,7 @@ import { openArcContext, openChromiumBrowser, openSafariContext } from './script
 import { openDocker } from './scripts/openDocker'
 import { getUserSelection } from './scripts/getUserSelection'
 import { closeApp } from './scripts/closeApp'
-
+import { openItermContext, runItermAndFireCommand } from './scripts/itermWindowArrangementAutomation'
 
 export {
   openTerminalInFilepath,
@@ -14,6 +14,8 @@ export {
   getUserSelection,
   closeApp,
   openChromiumBrowser,
-  openSafariContext
+  openSafariContext,
+  openItermContext,
+  runItermAndFireCommand
 }
 

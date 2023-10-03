@@ -1,6 +1,6 @@
 {
   "name": "node-jxa-workspace-automation",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "Packaging node + jxa scripts to use for automating macos based workspaces",
   "main": "dist/main.js",
   "types": "./dist/main.d.ts",
