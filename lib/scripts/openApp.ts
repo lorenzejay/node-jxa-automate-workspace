@@ -18,7 +18,7 @@ export const openApp = async (app: string) => {
         application.activate()
       }
     } catch (error) {
-      console.log(`${app} not running...`)
+      console.log(error?.message ? error.message : `${app} not running...`)
     }
   }, app)
 }

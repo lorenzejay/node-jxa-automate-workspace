@@ -2,13 +2,13 @@ import '@jxa/global-type'
 import { run } from '@jxa/run'
 import { ArcContextTypes } from '../../types/types'
 
-export const openArcContext = async (context?: ArcContextTypes) => {
-  return await run((context: ArcContextTypes) => {
+export function openArcContext(context?: ArcContextTypes) {
+  return run((context: ArcContextTypes) => {
     try {
-      console.log('context', context.spaceName)
       const arc = Application('Arc')
       arc.includeStandardAdditions = true
       arc.launch()
+      arc.activate()
 
       if (!arc) throw new Error('Arc doesnt exist')
       const windowsAmount = arc.windows.length
@@ -20,11 +20,10 @@ export const openArcContext = async (context?: ArcContextTypes) => {
       const windowAdded = arc.windows[0]
       const windowAddedSpaces = windowAdded.spaces
 
-      if (!windowAddedSpaces) return 'no spaces'
+      if (!windowAddedSpaces) throw new Error('No spaces in Arc')
       for (let i = 0; i < windowAddedSpaces.length; i++) {
         const spaceName = windowAddedSpaces[i].name()
         const currentSpace = windowAddedSpaces[i]
-        console.log('spaceName', spaceName)
         if (spaceName == context?.spaceName) {
           if (currentSpace.tabs.length == 0) {
             const newTab = arc.Tab()
@@ -49,16 +48,14 @@ export const openArcContext = async (context?: ArcContextTypes) => {
         }
       }
       delay(0.3)
-      arc.activate()
-      console.log('activated arc')
     } catch (error) {
       console.log('error', error)
+      throw new Error('Could not open arc')
     }
   }, context)
 }
 
-const textOpenArcContext = async () => {
-  await openArcContext({ spaceName: 'unifai' })
-  console.log('fired')
-}
-textOpenArcContext()
+// const textOpenArcContext = async () => {
+//   await openArcContext({ spaceName: 'unifai', links: ['https://google.com']})
+// }
+// textOpenArcContext()

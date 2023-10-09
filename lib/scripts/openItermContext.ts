@@ -1,17 +1,15 @@
-
-
 import '@jxa/global-type'
 import { run } from '@jxa/run'
-import { ItermWindowSplit, ItermContext } from '../types/types'
+import { ItermWindowSplit, TerminalContext } from '../types/types'
 
 
 // session is the terminal currentSession (current no defined types for this)
-export function runItermAndFireCommand(session: any ,workspaceDetails: ItermContext){
+function runItermAndFireCommand(session: any ,workspaceDetails: TerminalContext){
   if (!session) return 
   if (!workspaceDetails) return
   const {filePath, command, opensVSCode , usesDocker} = workspaceDetails
   
-  session.write({ text: `cd "/${filePath}"`, newline: true})
+  session.write({ text: `cd "${filePath}"`, newline: true})
   delay(0.5)
   if(usesDocker){
     session.write({ text: "docker compose up -d", newline: true });
@@ -20,14 +18,16 @@ export function runItermAndFireCommand(session: any ,workspaceDetails: ItermCont
   if (opensVSCode) {
     session.write({ text: "code .", newline: true })
   }
-  session.write({ text: `${command}`, newline: true });
+  if(command){
+    session.write({ text: `${command}`, newline: true });
+  }
   delay(0.5)
 
 }
 
 
 export async function openItermContext(context: ItermWindowSplit) {
-  await run(async (context: ItermWindowSplit, runItermAndFireCommandFunc) => {
+  await run((context: ItermWindowSplit, runItermAndFireCommandFunc) => {
     const { workspaces, useSplitPanes } = context
     const runItermAndFireCommand = new Function('return '+ runItermAndFireCommandFunc)()
 
@@ -35,11 +35,9 @@ export async function openItermContext(context: ItermWindowSplit) {
     app.includeStandardAdditions = true;
     let window;
 
-    if(app.windows().length === 0){
-      window = app.createWindowWithDefaultProfile()
-    } else {
-      window =  app.currentWindow()
-    }
+    // always create a new window
+    window = app.createWindowWithDefaultProfile()
+   
     delay(0.5)
 
     if(!window) throw new Error('No terminal window')
@@ -72,27 +70,28 @@ export async function openItermContext(context: ItermWindowSplit) {
       }
     }
     delay(0.5)
+    app.activate()
   }, context, runItermAndFireCommand.toString());
 }
 
-const contexts: ItermWindowSplit = {
-    useSplitPanes: true,
-    workspaces: [
-      {
-        filePath:'Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/Unifai-surveygen',
-        command: 'npm run start:dev',
-        usesDocker: true,
-        opensVSCode: false
-      },
-      {
-        filePath: "Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/surveygen-frontend",
-        command: 'npm run start',
-        usesDocker: false,
-        opensVSCode: false,
-      }
-    ]
+// const contexts: ItermWindowSplit = {
+//     useSplitPanes: true,
+//     workspaces: [
+//       {
+//         filePath:'Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/Unifai-surveygen',
+//         command: 'npm run start:dev',
+//         usesDocker: true,
+//         opensVSCode: false
+//       },
+//       {
+//         filePath: "Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/surveygen-frontend",
+//         command: 'npm run start',
+//         usesDocker: false,
+//         opensVSCode: false,
+//       }
+//     ]
     
-}
+// }
 
 
 
