@@ -54,6 +54,9 @@ export const openTerminalContext = async (
               )
               delay(0.5)
               if (usesDocker) {
+                const Docker = Application('Docker')
+                Docker.launch()
+                delay(1)
                 useTerminalAndRunCommand(
                   terminal,
                   'docker compose up -d',
@@ -97,6 +100,9 @@ export const openTerminalContext = async (
               )
               delay(0.5)
               if (usesDocker) {
+                const Docker = Application('Docker')
+                Docker.launch()
+                delay(1)
                 useTerminalAndRunCommand(
                   terminal,
                   'docker compose up -d',
@@ -125,28 +131,22 @@ export const openTerminalContext = async (
   )
 }
 
-// const workspaces: TerminalContext[] = [
-//   {
-//     filePath:
-//       'Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/Unifai-surveygen',
-//     command: 'npm run start:dev',
-//     usesDocker: true,
-//   },
-//   {
-//     filePath:
-//       'Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/surveygen-frontend',
-//     command: 'npm run start',
-//     opensVSCode: true,
-//   },
-// ]
+const workspaces: TerminalContext[] = [
+  {
+    filePath:
+      '/Users/lorenzejay/Documents/Uplift Digital Solutions/clients/unifai/Unifai-surveygen',
+    command: 'npm run start:dev',
+    usesDocker: true,
+  },
+]
 
-// const context: TerminalWorkspaceContext = {
-//   useNewTab: true,
-//   workspaces,
-// }
+const context: TerminalWorkspaceContext = {
+  useNewTab: true,
+  workspaces,
+}
 
-// const spawnWorkspace = async () => {
-//   await openTerminalInFilepath(context)
-// }
+const spawnWorkspace = async () => {
+  await openTerminalContext(context)
+}
 
-// spawnWorkspace()
+spawnWorkspace()
