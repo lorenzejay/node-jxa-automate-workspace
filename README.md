@@ -48,90 +48,32 @@ openChromiumBrowser({
  node index.js
 ```
 
-### If you want to to open a dev environment locally on VS Code
+### If you want to run terminal processes with Iterm
 
 ```ts
-import {
-  openTerminalInFilepath,
-  getUserSelection,
-  openApp,
-  openArcContext,
-  openDocker,
-  openChromiumBrowser,
-} from 'node-jxa-workspace-automation'
+import { openItermContext } from 'node-jxa-workspace-automation'
 
-const contextName = {
-  title: 'Context Name',
-  description: 'Full Stack App',
-  applications: [
-    'Arc',
-    'Terminal',
-    'Insomnia',
-    'DBeaver',
-    'Docker',
-    'Postgres',
+const contexts: ItermWindowSplit = {
+  useSplitPanes: true,
+  workspaces: [
+    {
+      filePath: '<your filepath>',
+      command: 'npm run start:dev',
+      usesDocker: true,
+      opensVSCode: true, // works if you have VS Code `code .` enabled
+    },
+    {
+      filePath: '<your filepath>',
+      command: 'npm run start',
+    },
   ],
-  workspacePaths: [
-    '<Enter file path to open in VSCODE>',
-    '<Enter a second file path to open in VSCODE>',
-  ],
-  browserLinks: ['https://github.com'],
-  workspaceCommands: ['npm run dev'],
-  spaceName: '<your name>',
-  spaceId: 'space name', // if you're using Arc
-  usesDocker: true,
 }
 
-const context2Name = {
-  title: 'Company 2',
-  description: 'next.js app',
-  workspacePaths: ['<workspace path>'],
-  workspaceCommands: ['npm run dev'],
-  applications: ['Google Chrome', 'Terminal'],
-  spaceName: '<space2>',
-  browserLinks: [
-    'https://runme.dev',
-    'https://stateful.com',
-    'http://localhost:3001',
-  ],
-  usesDocker: false,
+//RUN
+const spawnWorkspace = async () => {
+  return await openItermContext(contexts)
 }
-
-const contextSelections = [contextName, context2Name]
-
-const automateWorkspace = async () => {
-  try {
-    const selectedWorkspace = await getUserSelection(contextSelections)
-    if (!selectedWorkspace) return 'no selected apps'
-    for (let app of selectedWorkspace.applications) {
-      if (app == 'Docker') {
-        await openDocker()
-      } else if (app == 'Terminal') {
-        await openTerminalInFilepath({
-          filePaths: selectedWorkspace.workspacePaths,
-          commands: selectedWorkspace.workspaceCommands,
-          usesDocker: selectedWorkspace.usesDocker,
-        })
-      } else if (app == 'Google Chrome') {
-        await openChromiumBrowser({
-          tabs: selectedWorkspace.browserLinks,
-          browser: app,
-        })
-      } else if (app == 'Arc') {
-        await openArcContext({
-          links: selectedWorkspace.browserLinks,
-          spaceName: selectedWorkspace.spaceName,
-        })
-      } else {
-        await openApp(app)
-      }
-    }
-  } catch (error) {
-    throw new Error('Something went wrong')
-  }
-}
-
-automateWorkspace()
+spawnWorkspace()
 ```
 
 Features
@@ -140,6 +82,7 @@ Features
 2. Opens apps associated to workspace
 3. Open project in code editor
 4. Populate common workspace browser tabs to browser
+5. Quit all apps except for passed list of apps
 
 ## How you can make calling this easy
 
@@ -162,12 +105,11 @@ This project is available under the [Fair Source License](https://fair.io/?a#lic
 ### For Individual Users
 
 - Individual users are permitted to use the software for free.
-- Review the [LICENSE](./LICENSE) file for detailed information on the permissions and limitations.
+- Review the [LICENSE](./license) file for detailed information on the permissions and limitations.
 
 ### For Commercial Use
 
 - Businesses and other commercial entities are required to purchase a commercial license for use.
 - The use of this software without a commercial license in a commercial setting is not permitted under the Fair Source License.
-- For information on commercial licensing, please contact us at [contact@example.com](mailto:lorenze@upliftdigitalsolutions.com).
 
 **Please review the [LICENSE](./license) file in this repository for full details on permissions and restrictions.**
